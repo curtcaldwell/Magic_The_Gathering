@@ -43,7 +43,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
                     android:layout_gravity="center"
-                    android:transitionName="card_transition"
                     />
 
                 <LinearLayout
@@ -65,20 +64,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:paddingBottom="5dp"/>
 
                     <TextView
                         android:id="@+id/card_flavor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Card Info:"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="13dp"
                         android:text="Card Info:"
                         android:textSize="14sp"
                         android:textStyle="bold" />

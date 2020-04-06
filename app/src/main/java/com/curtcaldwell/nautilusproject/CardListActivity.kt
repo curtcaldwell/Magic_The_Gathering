@@ -1,19 +1,19 @@
 package com.curtcaldwell.nautilusproject
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.TransitionInflater
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
-import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.curtcaldwell.nautilusproject.card.CardDetailsActivity
@@ -21,7 +21,6 @@ import com.curtcaldwell.nautilusproject.data.model.Card
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.progress_bar
 import kotlinx.android.synthetic.main.activity_main.txt_error
-import kotlinx.android.synthetic.main.activity_single_card.*
 
 
 interface CardClickListener {
@@ -36,7 +35,7 @@ class CardListActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CardViewModel
     private lateinit var cardListAdapter: CardListPagingAdapter
-
+    private val editText : EditText by lazy { search_edit_text }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,35 +43,40 @@ class CardListActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this)
             .get(CardViewModel::class.java)
+
         initAdapter()
         initState()
+        editText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+            }
 
-//        getWindow().setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(android.R.transition.explode))
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
 
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
 
-
+        })
     }
 
     private fun initAdapter() {
 
         cardListAdapter = CardListPagingAdapter(object : CardClickListener {
             override fun onCardClick(card: Card, imageView: ImageView) {
-                Log.d("-----", "onCardClicked $card ${imageView.transitionName}")
-//                val pair1: Pair<View, String> =
-//                    Pair.create(imageView as View, imageView.transitionName ?: "")
-//                val optionsCompat: ActivityOptionsCompat =
-//                    ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                        this@CardListActivity ,
-//                        pair1
-//                    )
+                imageView.transitionName = card.name
                 val intent = Intent(this@CardListActivity, CardDetailsActivity::class.java)
                 intent.putExtra("card_extra", card)
-                this@CardListActivity.startActivity(intent)
+                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this@CardListActivity,
+                    imageView as View,
+                    card.name?:""
+                )
+                this@CardListActivity.startActivity(intent, options.toBundle())
 
             }
 
         }) { viewModel.retry() }
-        rv_main.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        rv_main.layoutManager = GridLayoutManager(this, 2, RecyclerView.VERTICAL, false)
         rv_main.adapter = cardListAdapter
         viewModel.cardList.observe(this, Observer {
             cardListAdapter.submitList(it)

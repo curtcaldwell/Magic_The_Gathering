@@ -7,24 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowContentTransitions">true</item>
-
-
     </style>
-    <style name="BaseAppTheme" parent="android:Theme.Material">
-        <!-- enable window content transitions -->
-        <item name="android:windowActivityTransitions">true</item>
-        <!-- specify enter and exit transitions -->
-        <item name="android:windowEnterTransition">@transition/shared_element_transition</item>
-        <item name="android:windowExitTransition">@transition/shared_element_transition</item>
-        <!-- specify shared element transitions -->
-        <item name="android:windowSharedElementEnterTransition">
-            @transition/shared_element_transition</item>
-        <item name="android:windowSharedElementExitTransition">
-            @transition/shared_element_transition</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+
 
 
 
