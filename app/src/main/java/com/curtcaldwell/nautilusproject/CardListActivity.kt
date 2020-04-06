@@ -2,23 +2,25 @@ package com.curtcaldwell.nautilusproject
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
-import androidx.lifecycle.*
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.curtcaldwell.nautilusproject.card.CardDetailsActivity
 import com.curtcaldwell.nautilusproject.data.api.NetworkService
 import com.curtcaldwell.nautilusproject.data.model.Card
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.progress_bar
-import kotlinx.android.synthetic.main.activity_main.txt_error
 
 interface CardClickListener {
 
@@ -98,5 +100,6 @@ class CardViewModelFactory(private val context: Context) : ViewModelProvider.Fac
         @Suppress("UNCHECKED_CAST")
         return CardViewModel(NetworkService.getService(context)) as T
     }
+
 
 }
