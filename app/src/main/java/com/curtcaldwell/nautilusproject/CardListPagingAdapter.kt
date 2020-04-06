@@ -68,7 +68,8 @@ class CardListPagingAdapter(
     }
 
     private fun hasFooter(): Boolean {
-        return super.getItemCount() != 0 && (state == State.LOADING || state == State.ERROR)
+//        return super.getItemCount() != 0 && (state == State.LOADING || state == State.ERROR)
+        return false
     }
 
     fun setState(state: State) {

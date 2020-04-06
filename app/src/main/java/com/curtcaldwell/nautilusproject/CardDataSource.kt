@@ -13,7 +13,8 @@ import java.util.concurrent.TimeUnit
 
 class CardDataSource(
     private val networkService: NetworkService,
-    private val compositeDisposable: CompositeDisposable)
+    private val compositeDisposable: CompositeDisposable,
+    private val stringSearch : String)
     : PageKeyedDataSource<Int, Card>() {
 
 
@@ -27,9 +28,7 @@ class CardDataSource(
         callback: LoadInitialCallback<Int, Card>) {
         updateState(State.LOADING)
         compositeDisposable.add(
-            networkService.getResult(1, params.requestedLoadSize)
-                .debounce(1, TimeUnit.SECONDS)
-                .distinctUntilChanged()
+            networkService.getResult(stringSearch, 1, params.requestedLoadSize)
                 .map { it.cards?.filter { !it.imageUrl.isNullOrEmpty() } }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -51,7 +50,7 @@ class CardDataSource(
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Card>) {
         updateState(State.LOADING)
         compositeDisposable.add(
-            networkService.getResult(params.key, params.requestedLoadSize)
+            networkService.getResult(stringSearch, params.key, params.requestedLoadSize)
                 .map { it.cards?.filter { !it.imageUrl.isNullOrEmpty() } }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

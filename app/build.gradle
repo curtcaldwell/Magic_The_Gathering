@@ -72,6 +72,9 @@ dependencies {
     implementation "androidx.paging:paging-rxjava2-ktx:2.1.2"
     implementation "androidx.paging:paging-runtime-ktx:2.1.2"
 
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+
+
     //Room
     implementation "androidx.room:room-runtime:2.2.5"
 //    kapt "androidx.room:room-compiler:2.2.5" // For Kotlin use kapt instead of annotationProcessor

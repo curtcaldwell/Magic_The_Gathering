@@ -16,13 +16,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class CardViewModel : ViewModel() {
+class CardViewModel(private val networkService: NetworkService) : ViewModel() {
 
-    private val networkService = NetworkService.getService()
+//    var networkService = NetworkService.getService()
     var cardList: LiveData<PagedList<Card>>
     private val compositeDisposable = CompositeDisposable()
     private val pageSize = 5
-    private val cardDataSourceFactory: CardDataSourceFactory
+    val cardDataSourceFactory: CardDataSourceFactory
 
     init {
         cardDataSourceFactory = CardDataSourceFactory(compositeDisposable, networkService)
@@ -33,9 +33,6 @@ class CardViewModel : ViewModel() {
             .build()
         cardList = LivePagedListBuilder<Int, Card>(cardDataSourceFactory, config).build()
     }
-
-
-
 
     fun getState(): LiveData<State> = Transformations.switchMap<CardDataSource,
             State>(cardDataSourceFactory.cardLiveDataSource, CardDataSource::state)
