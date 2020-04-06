@@ -46,8 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="ERROR !! Tap to retry."
-                android:textSize="28dp"
+                android:text="@string/error_tap_to_retry"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

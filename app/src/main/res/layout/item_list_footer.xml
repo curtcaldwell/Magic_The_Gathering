@@ -16,6 +16,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="ERROR !! Tap to retry." />
+        android:text="@string/error_tap_to_retry" />
 
 </RelativeLayout>

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">NautilusProject</string>
+    <string name="connection_problem">Connection Problem!!</string>
+    <string name="card_info">Card Info:</string>
+    <string name="card_info">Card Info:</string>
+    <string name="rarity">Rarity:</string>
+    <string name="type">Type:</string>
+    <string name="set_name">Set Name:</string>
+    <string name="artist">Artist:</string>
+    <string name="error_tap_to_retry">ERROR !! Tap to retry.</string>
+    <string name="error_tap_to_retry">ERROR !! Tap to retry.</string>
 </resources>
