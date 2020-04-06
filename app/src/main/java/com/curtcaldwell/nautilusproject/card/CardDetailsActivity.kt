@@ -17,7 +17,7 @@ import java.lang.Exception
 class CardDetailsActivity : AppCompatActivity() {
 
     private lateinit var _viewmodel: CardDetailsViewModel
-    private  val _cardImage :  ImageView by lazy{ card_image}
+    private val _cardImage: ImageView by lazy { card_image }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +37,8 @@ class CardDetailsActivity : AppCompatActivity() {
             card_text.text = desc
         })
         _viewmodel.cardRarity.observe(this, Observer { cardRarity ->
-           card_rarity.text = cardRarity
-            })
+            card_rarity.text = cardRarity
+        })
 
         _viewmodel.cardType.observe(this, Observer { cardType ->
             card_type.text = cardType
