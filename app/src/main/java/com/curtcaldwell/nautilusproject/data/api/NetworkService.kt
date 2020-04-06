@@ -52,12 +52,6 @@ interface NetworkService {
                 }
                 .build()
 
-//
-//            val downloader = OkHttp3Downloader(okHttpClient)
-//            val picasso = Picasso.Builder(applicationContext)
-//                .downloader(downloader).build()
-//            Picasso.setSingletonInstance(picasso)
-
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://api.magicthegathering.io/v1/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

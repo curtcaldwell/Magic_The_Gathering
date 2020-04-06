@@ -1,24 +1,16 @@
 package com.curtcaldwell.nautilusproject
 
-import android.util.Log
-import android.view.View
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.curtcaldwell.nautilusproject.data.api.NetworkService
 import com.curtcaldwell.nautilusproject.data.model.Card
-import com.curtcaldwell.nautilusproject.data.model.Result
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.schedulers.Schedulers
 
 class CardViewModel(private val networkService: NetworkService) : ViewModel() {
 
-//    var networkService = NetworkService.getService()
     var cardList: LiveData<PagedList<Card>>
     private val compositeDisposable = CompositeDisposable()
     private val pageSize = 5

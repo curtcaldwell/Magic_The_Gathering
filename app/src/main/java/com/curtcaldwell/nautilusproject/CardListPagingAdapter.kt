@@ -1,17 +1,9 @@
 package com.curtcaldwell.nautilusproject
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.curtcaldwell.nautilusproject.card.CardDetailsActivity
 import com.curtcaldwell.nautilusproject.data.model.Card
 
 

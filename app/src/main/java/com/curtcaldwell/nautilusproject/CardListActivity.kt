@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.GridLayoutManager
@@ -22,18 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.progress_bar
 import kotlinx.android.synthetic.main.activity_main.txt_error
 
-//interface ViewModelProviderFactory<T, VM> {
-//    val modelClass: Class<T>
-//    val viewModelClass: Class<VM>
-//    fun getId(model: T): String
-//    interface ProviderFactory<T>: ViewModelProvider.Factory {
-//    }
-//    fun create(): ProviderFactory<T>
-//}
-
-
 interface CardClickListener {
-
 
     fun onCardClick(card: Card, imageView: ImageView)
 }
@@ -42,7 +29,7 @@ class CardListActivity : AppCompatActivity() {
 
     private lateinit var viewModel: CardViewModel
     private lateinit var cardListAdapter: CardListPagingAdapter
-    private val editText : EditText by lazy { search_edit_text }
+    private val editText: EditText by lazy { search_edit_text }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +41,7 @@ class CardListActivity : AppCompatActivity() {
 
         initAdapter()
         initState()
-        editText.addTextChangedListener(object: TextWatcher {
+        editText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
             }
 
@@ -64,25 +51,8 @@ class CardListActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 viewModel.cardDataSourceFactory.updateSearch(p0.toString())
             }
-
         })
     }
-
-//    fun create(): ViewModelProviderFactory.ProviderFactory<Any> {
-//        return object : ViewModelProviderFactory.ProviderFactory<Any> {
-//            @Suppress("UNCHECKED_CAST")
-//            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//                return CardViewModel(
-//                    NetworkService.getService(applicationContext)
-//                ) as T
-//            }
-//
-//            override val model: Any
-//                get() = TODO("Not yet implemented")
-//        }
-//    }
-
-
 
     private fun initAdapter() {
 
@@ -94,7 +64,7 @@ class CardListActivity : AppCompatActivity() {
                 val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                     this@CardListActivity,
                     imageView as View,
-                    card.name?:""
+                    card.name ?: ""
                 )
                 this@CardListActivity.startActivity(intent, options.toBundle())
 
@@ -120,12 +90,10 @@ class CardListActivity : AppCompatActivity() {
             }
         })
     }
-
-
 }
 
 
-class CardViewModelFactory(private val context: Context): ViewModelProvider.Factory{
+class CardViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
         return CardViewModel(NetworkService.getService(context)) as T

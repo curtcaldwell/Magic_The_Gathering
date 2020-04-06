@@ -9,7 +9,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Action
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 
 class CardDataSource(
     private val networkService: NetworkService,
@@ -17,11 +16,8 @@ class CardDataSource(
     private val stringSearch : String)
     : PageKeyedDataSource<Int, Card>() {
 
-
     var state: MutableLiveData<State> = MutableLiveData()
     private  var retryCompletable: Completable? = null
-
-
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
@@ -87,20 +83,3 @@ class CardDataSource(
         retryCompletable = if (action == null) null else Completable.fromAction(action)
     }
 }
-
-//
-//        api.getResult("imageUrl", page)
-//            .map { it.cards.filter { !it.imageUrl.isNullOrEmpty() } }
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe({ cards -> listOberservable.value = cards
-//                // populate viewmodel observable list
-////
-////                Log.d("response", cardList.toString())
-//
-//
-//            }, { e ->
-//                e.printStackTrace()
-//            }
-//
-//            )
