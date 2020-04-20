@@ -27,7 +27,6 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
-//    apply plugin: 'kotlin-kapt'
 
 }
 
@@ -77,7 +76,6 @@ dependencies {
 
     //Room
     implementation "androidx.room:room-runtime:2.2.5"
-//    kapt "androidx.room:room-compiler:2.2.5" // For Kotlin use kapt instead of annotationProcessor
 
 
 

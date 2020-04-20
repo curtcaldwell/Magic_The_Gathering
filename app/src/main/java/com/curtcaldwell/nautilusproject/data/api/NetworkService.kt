@@ -4,19 +4,15 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import com.curtcaldwell.nautilusproject.data.model.Result
-import com.jakewharton.picasso.OkHttp3Downloader
-import com.squareup.picasso.Picasso
 import io.reactivex.Observable
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
-import java.io.IOException
 
 
 interface NetworkService {
