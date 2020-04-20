@@ -42,7 +42,7 @@ class CardListActivity : AppCompatActivity() {
 
         initAdapter()
         initState()
-        editText.hint = "Search By Card Name"
+        editText.hint = "Search"
         editText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
             }
