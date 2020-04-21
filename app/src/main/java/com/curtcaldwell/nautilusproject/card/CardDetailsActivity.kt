@@ -23,6 +23,8 @@ class CardDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_card)
         postponeEnterTransition()
+        val actionbar = supportActionBar
+        actionbar?.setDisplayHomeAsUpEnabled(true)
         val card = intent.getParcelableExtra<Card>("card_extra")
         _cardImage.transitionName = card.name
         loadImage(card)
@@ -52,6 +54,11 @@ class CardDetailsActivity : AppCompatActivity() {
         _viewmodel.cardFlavor.observe(this, Observer { cardFlavor ->
             card_flavor.text = cardFlavor
         })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun scheduleStartPostponedTransition(sharedElement: View) {
